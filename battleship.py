@@ -1,7 +1,7 @@
 ## HEADER ################################################
 ## Author: Jeremy Aguillon                              ##
 ## Title: Battleship                                    ##
-## Created: June 2015                                   ##
+## Last edited: 21 June 2015                            ##
 ## Description: Battleship game that is user vs no one. ##
 ##########################################################
 
@@ -10,7 +10,7 @@
 from random import randint
 
 ## CONSTANTS ##############################################################
-# Max rows and columns
+# Amount of rows and columns
 ROWS = 6
 COLS = 10
 # Number of hidden ships
@@ -68,6 +68,7 @@ def get_ships(numShips, board):
     # Array to store the tuples of locations
     shipPos = []
     
+    # Calls functions to get unique rows and columns
     shipRow = random_row(board)
     shipCol = random_col(board)
     
@@ -203,6 +204,7 @@ def game_over(shipsLeft, board, shipPos):
 #        shipPos - an array of tuples of the ship positions  
 # Output: None 
 def play_game(board, shipPos):
+    # Flag for the game loop
     playing = True
     # Counter for the turn of the user
     turn = 1
@@ -210,10 +212,12 @@ def play_game(board, shipPos):
     shipsLeft = NUM_SHIPS
     
     while playing:
+        # Displays the current turn to the user
         print "Turn:",(turn), "of", MAX_GUESSES
-        turn += 1
+        # Shows the user the updated board
         print_board(board)
-        
+
+        # Gets the input from the user
         guessRow = get_user_int("Guess Row: ")
         guessCol = get_user_int("Guess Col: ")
         
@@ -222,14 +226,14 @@ def play_game(board, shipPos):
             #break
         
         # Checks if the user entered a row or column outside of the game board
-        invalidRow = guessRow <= 0 or guessRow > ROWS
-        invalidCol = guessCol <= 0 or guessCol > COLS
-        
-        if invalidRow or invalidCol:
+        if (guessRow <= 0 or guessRow > ROWS) or (guessCol <= 0 or guessCol > COLS):
             # Prints message that the user guessed outside of the board
             print "Oops, that's not even in the ocean.\n"
-
+        # Guess was on the board
         else:
+            # Turn has been taken
+            turn += 1
+
             # Checks if the current is a ship location that has not been guessed
             if (guessRow, guessCol) in shipPos and board[guessRow][guessCol] == "O":
                 # Prints message that the user sunk a ship
