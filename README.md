@@ -12,4 +12,3 @@ Simple battleship game to play against a computer.
 
 * Currently uses CLI to get input and play game - plan to update in future with GUI using TKinter
 * Currently only single ships - plan to make ships actual game size
-* Currently only one player - plan to make it multiplayer
