@@ -28,7 +28,7 @@ def get_playing(times_played):
     valid = False
 
     while (valid == False): 
-         playing = raw_input(messages[times_played])
+         playing = raw_input(messages[times_played]).lower()
 
          if playing not in ['y', 'n']:
              print "Oops that's not a valid option, please use y or n."
